@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Grid, Typography} from "@mui/material";
 import NewPost from "../../components/NewPost/NewPost";
-import Posts from "../../components/Post/Posts";
 import {Post} from "../../types";
+import OnePost from "../../components/OnePost/OnePost";
+import {nanoid} from "nanoid";
 
 const Chat = () => {
+    const [posts, setPosts] = useState<Post[]>([]);
+
     const onSubmit = (newPost: Post) => {
-        console.log(newPost)
-    }
+        setPosts(prev => [...prev, newPost]);
+    };
+
+
     return (
         <>
             <Typography variant="h3" style={{textAlign: 'center', margin: 10}}>
@@ -18,7 +23,14 @@ const Chat = () => {
                     <NewPost onSubmit={onSubmit}/>
                 </Grid>
                 <Grid item xs={7}>
-                    <Posts/>
+                    {posts.map((post) => (
+                        <>
+                            <OnePost post={post}
+                                     key={nanoid()}
+                            />
+                        </>
+
+                    ))}
                 </Grid>
             </Grid>
         </>

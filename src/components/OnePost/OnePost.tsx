@@ -1,19 +1,24 @@
 import React from 'react';
 import {Card, CardContent, Typography} from "@mui/material";
+import {Post} from "../../types";
 
-const OnePost = () => {
+interface Props {
+    post: Post
+}
+
+const OnePost: React.FC<Props> = ({post}) => {
     return (
         <>
             <Card sx={{ minWidth: 275, margin: 3 }}>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Messages date
+                        {post.datetime}
                     </Typography>
                     <Typography variant="h5" component="div">
-                        Messages text
+                        {post.message}
                     </Typography>
                     <Typography variant="body2">
-                        Messages author
+                        {post.author}
                     </Typography>
                 </CardContent>
                 {/*<CardActions>*/}

@@ -20,12 +20,12 @@ const NewPost: React.FC<Props> = ({onSubmit}) => {
     const submitHandler = (e: React.FormEvent) => {
         e.preventDefault();
         setDisabled(true);
-        // let datetime = new Date;
-        // console.log(datetime)
+
         onSubmit({
             datetime: (new Date()).toUTCString(),
             ...post,
         });
+        setPost({author: '', message: ''});
     };
     return (
         <Box
@@ -56,7 +56,7 @@ const NewPost: React.FC<Props> = ({onSubmit}) => {
                     maxRows={5}
                     aria-label="maximum height"
                     placeholder="Enter your messages"
-                    defaultValue={post.message}
+                    value={post.message}
                     name='message'
                     style={{ width: 500 , height: 200, margin:15}}
                     onChange={e => handleChange(e)}
